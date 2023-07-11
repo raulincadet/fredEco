@@ -22,7 +22,7 @@ def fred_series(series,fred_api,frequency='a',starttime='1776-07-04',endtime='99
     -------
     from fredeco.fredData import fred_series
 
-    fred_series(series='GDP',fred_api=fred_api)
+    fred_series(series='GDP',fred_api='4e5rty8wfr')
 
    '''
     import numpy as np
@@ -86,7 +86,7 @@ def fred_multi_series(series,fred_api,frequency='a',starttime='1776-07-04',endti
     -------
     from fredeco.fredData import fred_multi_series
 
-    fred_multi_series(series=['GDP','GDPCA'],fred_api=fred_api)
+    fred_multi_series(series=['GDP','GDPCA'],fred_api='4e5rty8wfr')
 
     """
 
@@ -113,6 +113,8 @@ def units(data):
     
     Arguments
     --------
+    fred_api: str
+        Your registered FRED API keys. You can use the function fredKey.request_api_key() to request an API key on the FRED website.
     data: data frame
         a data frame of indicators retreived from FRED®. All columns names should be FRED® indicators IDs.
 
@@ -120,7 +122,7 @@ def units(data):
     --------
     from fredeco.fredData import units
 
-    units(df)
+    units(fred_api='4e5rty8wfr',df)
 
     '''
     
@@ -129,7 +131,7 @@ def units(data):
 
 
 
-def explore(data):
+def explore(fred_api,data):
     '''Explore some key statistics of a data frame of indicators retreived from FRED®. 
 
     This function returns a data frame with some information related to each economic indicator of the data frame x. 
@@ -138,6 +140,8 @@ def explore(data):
     
     Arguments
     --------
+    fred_api: str
+        Your registered FRED API keys. You can use the function fredKey.request_api_key() to request an API key on the FRED website.
     x: data frame
         a data frame of indicators retreived from FRED®. All columns names should be FRED® indicators IDs.
 
@@ -145,7 +149,7 @@ def explore(data):
     -------
     from fredeco.fredData import explore
 
-    explore(df)  
+    explore(fred_api='4e5rty8wfr',df)  
 
     '''
     import pandas as pd

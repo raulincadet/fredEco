@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "Fredeco"
 version = "0.1.0"
-description =  "This package allows its users to retrieve data provided by FRED API and information related to them, such as their source. In this regards, the package allows to search for series list from a category or by keywords."
+description =  "This package allows its users to retrieve data provided by FRED® API and information related to them, such as their source."
 authors = ["Raulin Cadet <cadetraulin@gmail.com>"]
-readme = "README.md"
+readme = "README.rst"
 packages = [{include = "fredeco"}]
 
 [tool.poetry.dependencies]
