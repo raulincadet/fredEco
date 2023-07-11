@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "Fredeco"
+version = "0.1.0"
+description =  "This package allows its users to retrieve data provided by FRED API and information related to them, such as their source. In this regards, the package allows to search for series list from a category or by keywords."
+authors = ["Raulin Cadet <cadetraulin@gmail.com>"]
+readme = "README.md"
+packages = [{include = "fredeco"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+datetime = "^5.1"
+pandas = "^2.0.3"
+numpy = "^1.25.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+myst-nb = {version = "^0.17.2", python = "^3.9"}
+sphinx-autoapi = "^2.1.1"
+sphinx-rtd-theme = "^1.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

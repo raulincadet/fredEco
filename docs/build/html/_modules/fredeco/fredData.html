@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fredeco.fredData &mdash; fredeco 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            fredeco
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Readme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">fredeco</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">fredeco</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">fredeco.fredData</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for fredeco.fredData</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">fredeco.fredSearch</span> <span class="kn">import</span> <span class="n">fred_info_series</span><span class="p">,</span> <span class="n">fred_list_series</span>
+
+
+<div class="viewcode-block" id="fred_series"><a class="viewcode-back" href="../../fredeco.html#fredeco.fredData.fred_series">[docs]</a><span class="k">def</span> <span class="nf">fred_series</span><span class="p">(</span><span class="n">series</span><span class="p">,</span><span class="n">fred_api</span><span class="p">,</span><span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="n">starttime</span><span class="o">=</span><span class="s1">&#39;1776-07-04&#39;</span><span class="p">,</span><span class="n">endtime</span><span class="o">=</span><span class="s1">&#39;9999-12-31&#39;</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="s1">&#39;lin&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Retreive and economic indicator from FRED® API</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ----------</span>
+<span class="sd">    series: str </span>
+<span class="sd">        A time series ID, such as GDP.</span>
+<span class="sd">    fred_api: str</span>
+<span class="sd">    Your registered FRED API keys. You can use the function fredKey.request_api_key() to request an API key on the FRED website.</span>
+<span class="sd">    frequency: str</span>
+<span class="sd">       The frequency of data. The default value is &#39;a&#39; for annual data; &#39;q&#39; is for quarterly data; &#39;m&#39; is for monthly data</span>
+<span class="sd">    starttime: str</span>
+<span class="sd">        The first date, as a string, of the time series data to retrieve. The default value is &#39;1776-07-04&#39;.</span>
+<span class="sd">    endtime: str</span>
+<span class="sd">        The last date, as a string, of the time series data to retrieve. The default value is &#39;9999-12-31&#39;.</span>
+<span class="sd">    transform: str</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    from fredeco.fredData import fred_series</span>
+
+<span class="sd">    fred_series(series=&#39;GDP&#39;,fred_api=fred_api)</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+    <span class="kn">import</span> <span class="nn">requests</span>
+    <span class="kn">import</span> <span class="nn">json</span>
+    <span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://api.stlouisfed.org/fred/series/observations?series_id=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">series</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&amp;output_type=1&#39;</span><span class="o">+</span><span class="s1">&#39;&amp;frequency=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&amp;units=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&amp;observation_start=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">starttime</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&amp;observation_end=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">endtime</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&amp;api_key=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fred_api</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&amp;file_type=json&#39;</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">dat</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">()][</span><span class="mi">12</span><span class="p">])</span>
+        <span class="n">dat</span><span class="o">=</span><span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;value&#39;</span><span class="p">]]</span>
+        <span class="n">dat</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Dates&#39;</span><span class="p">,</span><span class="n">series</span><span class="p">]</span>
+        <span class="n">dat</span><span class="o">=</span><span class="n">dat</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Dates&#39;</span><span class="p">)</span>
+    
+        <span class="c1">####</span>
+        <span class="k">def</span> <span class="nf">to_float</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># Since missing values are strings, I convert to float </span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>      <span class="c1"># convert string values to float    </span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>        <span class="c1"># convert strings related to missing data to NAN</span>
+            <span class="k">return</span> <span class="n">y</span> 
+        <span class="n">z</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dat</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to_float</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="c1">#####</span>
+        <span class="n">dat2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>   <span class="c1"># build a data frame with the lists of float data</span>
+        <span class="n">dat2</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">dat</span><span class="o">.</span><span class="n">index</span><span class="p">;</span><span class="n">dat2</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="n">dat</span><span class="o">.</span><span class="n">columns</span>
+        <span class="k">return</span> <span class="n">dat2</span>
+        
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;At least, one of the arguments of the function have an inappropriate value. This is the case, for example, when the FRED® ID is misspelled.&#39;</span><span class="p">)</span></div>
+
+<span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="fred_multi_series"><a class="viewcode-back" href="../../fredeco.html#fredeco.fredData.fred_multi_series">[docs]</a><span class="k">def</span> <span class="nf">fred_multi_series</span><span class="p">(</span><span class="n">series</span><span class="p">,</span><span class="n">fred_api</span><span class="p">,</span><span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="n">starttime</span><span class="o">=</span><span class="s1">&#39;1776-07-04&#39;</span><span class="p">,</span><span class="n">endtime</span><span class="o">=</span><span class="s1">&#39;9999-12-31&#39;</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="s1">&#39;lin&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve data for several economic indicators from FRED® API.</span>
+
+<span class="sd">    This method return a data frame of several variables.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fred_api: str</span>
+<span class="sd">        Your registered FRED API keys. You can use the function fredKey.request_api_key() to request an API key on the FRED website.</span>
+<span class="sd">    series: str </span>
+<span class="sd">        A time series ID, such as GDP.</span>
+<span class="sd">    frequency: str</span>
+<span class="sd">       The frequency of data. The default value is &#39;a&#39; for annual data; &#39;q&#39; is for quarterly data; &#39;m&#39; is for monthly data</span>
+<span class="sd">    starttime: str</span>
+<span class="sd">        The first date, as a string, of the time series data to retrieve. The default value is &#39;1776-07-04&#39;.</span>
+<span class="sd">    endtime: str</span>
+<span class="sd">        The last date, as a string, of the time series data to retrieve. The default value is &#39;9999-12-31&#39;.</span>
+<span class="sd">    transform: str   </span>
+
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    from fredeco.fredData import fred_multi_series</span>
+
+<span class="sd">    fred_multi_series(series=[&#39;GDP&#39;,&#39;GDPCA&#39;],fred_api=fred_api)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="n">dat</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+
+        <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">fred_series</span><span class="p">(</span><span class="n">series</span><span class="o">=</span><span class="n">series</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">fred_api</span><span class="o">=</span><span class="n">fred_api</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="n">frequency</span><span class="p">,</span> <span class="n">starttime</span><span class="o">=</span><span class="n">starttime</span><span class="p">,</span> <span class="n">endtime</span><span class="o">=</span><span class="n">endtime</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+            <span class="n">dat</span><span class="p">[</span><span class="n">series</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">=</span><span class="n">y</span>
+            <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="n">dat</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;At least, one of the arguments of the function have an inappropriate value. This is the case, for example, when the FRED® ID is misspelled.&#39;</span><span class="p">)</span></div>
+
+<span class="c1">##########################################</span>
+<span class="c1">############</span>
+<div class="viewcode-block" id="units"><a class="viewcode-back" href="../../fredeco.html#fredeco.fredData.units">[docs]</a><span class="k">def</span> <span class="nf">units</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Unit of each series of data frame of FRED® data.</span>
+
+<span class="sd">    This function returns a list</span>
+<span class="sd">    </span>
+<span class="sd">    Arguments</span>
+<span class="sd">    --------</span>
+<span class="sd">    data: data frame</span>
+<span class="sd">        a data frame of indicators retreived from FRED®. All columns names should be FRED® indicators IDs.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    --------</span>
+<span class="sd">    from fredeco.fredData import units</span>
+
+<span class="sd">    units(df)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="n">u</span><span class="o">=</span><span class="p">[</span><span class="nb">list</span><span class="p">((</span><span class="n">fred_info_series</span><span class="p">(</span><span class="n">series</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">fred_api</span><span class="o">=</span><span class="n">fred_api</span><span class="p">))</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+    <span class="k">return</span> <span class="n">u</span></div>
+
+
+
+<div class="viewcode-block" id="explore"><a class="viewcode-back" href="../../fredeco.html#fredeco.fredData.explore">[docs]</a><span class="k">def</span> <span class="nf">explore</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Explore some key statistics of a data frame of indicators retreived from FRED®. </span>
+
+<span class="sd">    This function returns a data frame with some information related to each economic indicator of the data frame x. </span>
+<span class="sd">    Most of the information provided are statistics calculated by the function for each one of the indicators.</span>
+<span class="sd">    All columns names should be FRED® indicators IDs.</span>
+<span class="sd">    </span>
+<span class="sd">    Arguments</span>
+<span class="sd">    --------</span>
+<span class="sd">    x: data frame</span>
+<span class="sd">        a data frame of indicators retreived from FRED®. All columns names should be FRED® indicators IDs.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    from fredeco.fredData import explore</span>
+
+<span class="sd">    explore(df)  </span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="k">def</span> <span class="nf">cv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">des</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Units&#39;</span><span class="p">:</span><span class="n">units</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="s1">&#39;N&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span><span class="s1">&#39;Mean&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="s1">&#39;Median&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span><span class="s1">&#39;Std&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span><span class="s1">&#39;Min&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+            <span class="s1">&#39;Max&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="s1">&#39;CV&#39;</span><span class="p">:</span><span class="n">cv</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="s1">&#39;25% quantile&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span><span class="s1">&#39;50% quantile&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s1">&#39;75% quantile&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span><span class="s1">&#39;skewness&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">skew</span><span class="p">(),</span><span class="s1">&#39;kurtosis&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">kurt</span><span class="p">()})</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">des</span>
+    <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;Check if all columns names of data are FRED® ID. At least one of them maybe misspelled.&#39;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Raulin L. Cadet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

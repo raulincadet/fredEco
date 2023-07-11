@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fredeco.fredSearch &mdash; fredeco 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            fredeco
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Readme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">fredeco</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">fredeco</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">fredeco.fredSearch</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for fredeco.fredSearch</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="fred_list_series"><a class="viewcode-back" href="../../fredeco.html#fredeco.fredSearch.fred_list_series">[docs]</a><span></span><span class="k">def</span> <span class="nf">fred_list_series</span><span class="p">(</span><span class="n">fred_api</span><span class="p">,</span><span class="n">category_id</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Find the series of a category</span>
+<span class="sd">    </span>
+<span class="sd">    This function returns a data frame with information related to all series for a specific category of data provided by FRED.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    --------</span>
+<span class="sd">    fred_api: str</span>
+<span class="sd">        Your registered FRED API keys. You can use the function fredKey.request_api_key() to request an API key on the FRED website.</span>
+<span class="sd">    category_id: int</span>
+<span class="sd">        The id for a category of series. The default value is 0, which is the root category.</span>
+
+<span class="sd">        </span>
+<span class="sd">    Example</span>
+<span class="sd">    --------</span>
+<span class="sd">    from fredeco.fredSearch import fred_list_series</span>
+<span class="sd">    </span>
+<span class="sd">    fred_list_series(fred_api, category_id=125)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="kn">import</span> <span class="nn">requests</span>
+    <span class="kn">import</span> <span class="nn">json</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://api.stlouisfed.org/fred/category/series?category_id=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">category_id</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;&amp;api_key=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fred_api</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;&amp;file_type=json&quot;</span>
+    <span class="n">url</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">dl</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">7</span><span class="p">:][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">dl</span></div>
+
+<span class="c1">########################</span>
+
+<div class="viewcode-block" id="fred_info_series"><a class="viewcode-back" href="../../fredeco.html#fredeco.fredSearch.fred_info_series">[docs]</a><span class="k">def</span> <span class="nf">fred_info_series</span><span class="p">(</span><span class="n">fred_api</span><span class="p">,</span><span class="n">series</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Find the information that describe an economic indicator.</span>
+<span class="sd">    </span>
+<span class="sd">    This function returns a dictionnary of information that describe a series, such as its title, if it is</span>
+<span class="sd">    seasonally adjusted or not, the date of last update, the unit used as measure, the notes where data source may be found etc.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    --------</span>
+<span class="sd">    fred_api: str</span>
+<span class="sd">        Your registered FRED API keys. You can use the function fredKey.request_api_key() to request an API key on the FRED website.</span>
+<span class="sd">    series: str </span>
+<span class="sd">        A time series ID.</span>
+
+<span class="sd">        </span>
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    from fredeco.fredSearch import fred_info_series</span>
+
+<span class="sd">    fred_info_series(series=&#39;GDP&#39;,fred_api=fred_api)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="kn">import</span> <span class="nn">requests</span>
+    <span class="kn">import</span> <span class="nn">json</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://api.stlouisfed.org/fred/series?series_id=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">series</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;&amp;api_key=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fred_api</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;&amp;file_type=json&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+<span class="c1">########################</span>
+
+<div class="viewcode-block" id="fred_search"><a class="viewcode-back" href="../../fredeco.html#fredeco.fredSearch.fred_search">[docs]</a><span class="k">def</span> <span class="nf">fred_search</span><span class="p">(</span><span class="n">fred_api</span><span class="p">,</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Search for series related to one or several keywords.</span>
+
+<span class="sd">    This function returns a data frame of variables related to the keywords indicated by the user. </span>
+<span class="sd">    The data frame provide several information for the series provided, such as their id, title, frequency, units of measurement,</span>
+<span class="sd">    some notes related to their respective source etc.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    --------</span>
+<span class="sd">    fred_api: str</span>
+<span class="sd">        Your registered FRED API keys. You can use the function fredKey.request_api_key() to request an API key on the FRED website.    Your registered FRED API keys. You can request an API key: https://fredaccount.stlouisfed.org/apikeys</span>
+<span class="sd">    text    str</span>
+<span class="sd">        The keywords to look for among the variables available in FRED data.</span>
+
+<span class="sd">        </span>
+<span class="sd">    Example</span>
+<span class="sd">    ------- </span>
+<span class="sd">    from fredeco.fredSearch import fred_info_series</span>
+
+<span class="sd">    fred_search(fred_api,text=&#39;Price index&#39;)</span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="kn">import</span> <span class="nn">requests</span>
+    <span class="kn">import</span> <span class="nn">json</span>
+    <span class="n">text1</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://api.stlouisfed.org/fred/series/search?search_text=&quot;</span><span class="o">+</span><span class="n">text1</span><span class="o">+</span><span class="s2">&quot;&amp;api_key=&quot;</span><span class="o">+</span><span class="n">fred_api</span><span class="o">+</span><span class="s2">&quot;&amp;file_type=json&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">ds</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">7</span><span class="p">:][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ds</span></div>
+
+
+<div class="viewcode-block" id="fred_vintagedates"><a class="viewcode-back" href="../../fredeco.html#fredeco.fredSearch.fred_vintagedates">[docs]</a><span class="k">def</span> <span class="nf">fred_vintagedates</span><span class="p">(</span><span class="n">fred_api</span><span class="p">,</span><span class="n">series</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Historical dates of release of new or revised data</span>
+
+<span class="sd">    This function returns a list of historical dates of release of new or revised data for a specific series.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    --------</span>
+<span class="sd">    series: str </span>
+<span class="sd">        A time series ID.</span>
+
+<span class="sd">        </span>
+<span class="sd">    Example</span>
+<span class="sd">    ------</span>
+<span class="sd">    from fredeco.fredSearch import fred_vintagedates</span>
+
+<span class="sd">    fredSearch.fred_vintagedates(series=&#39;GDP&#39;)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="kn">import</span> <span class="nn">requests</span>
+    <span class="kn">import</span> <span class="nn">json</span>
+
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://api.stlouisfed.org/fred/series/vintagedates?series_id=&quot;</span><span class="o">+</span><span class="n">series</span><span class="o">+</span><span class="s2">&quot;&amp;api_key=&quot;</span><span class="o">+</span><span class="n">fred_api</span><span class="o">+</span><span class="s2">&quot;&amp;file_type=json&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">ds</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">7</span><span class="p">:][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">ds</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Raulin L. Cadet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
