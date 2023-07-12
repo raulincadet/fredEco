@@ -1,14 +1,40 @@
-name: release
-run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
-jobs:
-  check-bats-version:
-    runs-on: github
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
 
+on: push
+
+## Defining the workflow
+jobs:
+  build-n-publish:
+    name: Release
+    runs-on: ubuntu-latest
+
+# build project distribution
+steps:
+  - uses: actions/checkout@v3
+  - name: Set up Python
+    uses: actions/setup-python@v4
+    with:
+      python-version: "3.x"
+
+      
+- name: Install pypa/build
+run: >-
+  python3 -m
+  pip install
+  build
+  --user
+- name: Build a binary wheel and a source tarball
+run: >-
+  python3 -m
+  build
+  --sdist
+  --wheel
+  --outdir dist/
+  .
+
+ # publish the distribution to PyPi
+- name: Publish distribution 📦 to PyPI
+ if: startsWith(github.ref, 'refs/tags')
+ uses: pypa/gh-action-pypi-publish@release/v1
+ with:
+   password: ${{ secrets.PYPI_API_TOKEN }} 
