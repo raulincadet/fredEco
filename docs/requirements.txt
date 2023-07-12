@@ -4,4 +4,4 @@ datetime == 5.1
 pandas == 2.0.3
 numpy == 1.25.0
 nbsphinx == 0.9.2
-pandoc = 2.3
+pandoc == 2.3
