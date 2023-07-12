@@ -45,3 +45,8 @@ exclude_patterns = []
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+
+#########################
+[build-system]
+requires = ["wheel", "setuptools", "oldest-supported-numpy"]
+build-backend = "setuptools.build_meta"
