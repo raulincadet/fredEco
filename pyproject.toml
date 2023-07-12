@@ -2,8 +2,9 @@
 name = "Fredeco"
 version = "0.1.0"
 description =  "This package allows its users to retrieve data provided by FRED® API and information related to them, such as their source."
-authors = ["Raulin Cadet <cadetraulin@gmail.com>"]
+authors = ["Raulin Cadet"]
 readme = "README.rst"
+repository = "https://github.com/raulincadet/fredeco"
 packages = [{include = "fredeco"}]
 
 [tool.poetry.dependencies]
