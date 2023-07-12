@@ -1,7 +1,11 @@
 name: Release
 
 on:
+<<<<<<< HEAD
   push:
+=======
+  release:
+>>>>>>> 75acc13a474db408f84091d426aa3ab0c27b37b6
     tags:
       - '*.*.*'
 
@@ -44,4 +48,8 @@ jobs:
       - name: Publish to PyPI
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+<<<<<<< HEAD
         run: poetry publish
+=======
+        run: poetry publish
+>>>>>>> 75acc13a474db408f84091d426aa3ab0c27b37b6
