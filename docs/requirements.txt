@@ -1,3 +1,4 @@
+python>=3.7
 autodocsumm==0.2.11
 myst-nb==0.17.2
 myst-parser==0.18.1
