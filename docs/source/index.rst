@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Fredeco project's documentation!
+Fredeco documentation!
 ===========================================
 
 .. toctree::
@@ -11,7 +11,9 @@ Fredeco project's documentation!
    :caption: Contents:
 
    readme
+   examples
    modules
+
 
 Indices and tables
 ==================

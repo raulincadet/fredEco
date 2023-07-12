@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>fredeco package &mdash; fredeco 0.1.0 documentation</title>
+  <title>fredeco package &mdash; Fredeco 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -17,6 +17,7 @@
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,7 +33,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            fredeco
+            Fredeco
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -45,6 +46,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Readme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples of usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">fredeco</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">fredeco package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
@@ -79,7 +81,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">fredeco</a>
+          <a href="index.html">Fredeco</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -107,19 +109,22 @@
 <span id="fredeco-freddata-module"></span><h2>fredeco.fredData module<a class="headerlink" href="#module-fredeco.fredData" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="fredeco.fredData.explore">
-<span class="sig-prename descclassname"><span class="pre">fredeco.fredData.</span></span><span class="sig-name descname"><span class="pre">explore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fredeco/fredData.html#explore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fredeco.fredData.explore" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">fredeco.fredData.</span></span><span class="sig-name descname"><span class="pre">explore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fred_api</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fredeco/fredData.html#explore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fredeco.fredData.explore" title="Permalink to this definition"></a></dt>
 <dd><p>Explore some key statistics of a data frame of indicators retreived from FRED®.</p>
 <p>This function returns a data frame with some information related to each economic indicator of the data frame x.
 Most of the information provided are statistics calculated by the function for each one of the indicators.
 All columns names should be FRED® indicators IDs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x</strong> (<em>data frame</em>) – a data frame of indicators retreived from FRED®. All columns names should be FRED® indicators IDs.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fred_api</strong> (<em>str</em>) – Your registered FRED API keys. You can use the function fredKey.request_api_key() to request an API key on the FRED website.</p></li>
+<li><p><strong>x</strong> (<em>data frame</em>) – a data frame of indicators retreived from FRED®. All columns names should be FRED® indicators IDs.</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Example</p>
 <p>from fredeco.fredData import explore</p>
-<p>explore(df)</p>
+<p>explore(fred_api=’4e5rty8wfr’,df)</p>
 </dd></dl>
 
 <dl class="py function">
@@ -141,7 +146,7 @@ All columns names should be FRED® indicators IDs.</p>
 </dl>
 <p class="rubric">Example</p>
 <p>from fredeco.fredData import fred_multi_series</p>
-<p>fred_multi_series(series=[‘GDP’,’GDPCA’],fred_api=fred_api)</p>
+<p>fred_multi_series(series=[‘GDP’,’GDPCA’],fred_api=’4e5rty8wfr’)</p>
 </dd></dl>
 
 <dl class="py function">
@@ -163,7 +168,7 @@ All columns names should be FRED® indicators IDs.</p>
 </dl>
 <p class="rubric">Example</p>
 <p>from fredeco.fredData import fred_series</p>
-<p>fred_series(series=’GDP’,fred_api=fred_api)</p>
+<p>fred_series(series=’GDP’,fred_api=’4e5rty8wfr’)</p>
 </dd></dl>
 
 <dl class="py function">
@@ -173,12 +178,15 @@ All columns names should be FRED® indicators IDs.</p>
 <p>This function returns a list</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data</strong> (<em>data frame</em>) – a data frame of indicators retreived from FRED®. All columns names should be FRED® indicators IDs.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fred_api</strong> (<em>str</em>) – Your registered FRED API keys. You can use the function fredKey.request_api_key() to request an API key on the FRED website.</p></li>
+<li><p><strong>data</strong> (<em>data frame</em>) – a data frame of indicators retreived from FRED®. All columns names should be FRED® indicators IDs.</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Example</p>
 <p>from fredeco.fredData import units</p>
-<p>units(df)</p>
+<p>units(fred_api=’4e5rty8wfr’,df)</p>
 </dd></dl>
 
 </section>
@@ -258,12 +266,15 @@ some notes related to their respective source etc.</p>
 <p>This function returns a list of historical dates of release of new or revised data for a specific series.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>series</strong> (<em>str</em>) – A time series ID.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fred_api</strong> (<em>str</em>) – Your registered FRED API keys. You can use the function fredKey.request_api_key() to request an API key on the FRED website.    Your registered FRED API keys. You can request an API key: <a class="reference external" href="https://fredaccount.stlouisfed.org/apikeys">https://fredaccount.stlouisfed.org/apikeys</a></p></li>
+<li><p><strong>series</strong> (<em>str</em>) – A time series ID.</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Example</p>
 <p>from fredeco.fredSearch import fred_vintagedates</p>
-<p>fredSearch.fred_vintagedates(series=’GDP’)</p>
+<p>fredSearch.fred_vintagedates(fred_api,series=’GDP’)</p>
 </dd></dl>
 
 </section>

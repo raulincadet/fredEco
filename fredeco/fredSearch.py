@@ -103,6 +103,8 @@ def fred_vintagedates(fred_api,series):
 
     Arguments
     --------
+    fred_api: str
+        Your registered FRED API keys. You can use the function fredKey.request_api_key() to request an API key on the FRED website.    Your registered FRED API keys. You can request an API key: https://fredaccount.stlouisfed.org/apikeys
     series: str 
         A time series ID.
 
@@ -111,7 +113,7 @@ def fred_vintagedates(fred_api,series):
     ------
     from fredeco.fredSearch import fred_vintagedates
 
-    fredSearch.fred_vintagedates(series='GDP')
+    fredSearch.fred_vintagedates(fred_api,series='GDP')
     '''
     import pandas as pd
     import requests
