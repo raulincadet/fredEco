@@ -1,9 +1,9 @@
-name: learn-github-actions
+name: release
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
   check-bats-version:
-    runs-on: ubuntu-latest
+    runs-on: github
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
