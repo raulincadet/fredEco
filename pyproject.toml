@@ -5,6 +5,8 @@ description =  "This package allows its users to retrieve data provided by FREDÂ
 authors = ["Raulin Cadet"]
 readme = "README.rst"
 repository = "https://github.com/raulincadet/fredeco"
+documentation = "https://fredeco.readthedocs.io/en/latest/"
+keywords = ["economic-data", "fred"]
 packages = [{include = "fredeco"}]
 
 [tool.poetry.dependencies]
