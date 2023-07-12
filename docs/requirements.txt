@@ -1,3 +1,2 @@
 requests == 2.31.0
-nbsphinx == 0.9.2
 pandoc == 2.3
