@@ -2,18 +2,18 @@
 Description
 =============
 
-This package allows its users to retrieve data provided by FRED® API. This package uses FRED® API but is not endorsed or certified by the Federal Reserve Bank of St. Louis.
+This python package allows its users to retrieve economic data provided by FRED® API. Although ``fredeco`` uses FRED® API, it is not endorsed or certified by the Federal Reserve Bank of St. Louis.
 
 ===========
 Features
 ===========
 
-* Retrieve a time series, when indicating its code;
-* Retrieve several time series, indicating their codes;
-* Search for all time series related to the keywords indicated by the user;
-* Find all time series of a category of series, by indicating the ID of the category;
-* Find the dates of all release of a time series;
-* Find the information related to a time series, such as the notes where the source of data can be found.
+* Retrieve a time series, when indicating the ID of the related indicator;
+* Retrieve several time series, indicating their IDs;
+* Search for all indicators related to the keywords indicated by the user;
+* Find all indicators of a category of series, by indicating the ID of the category;
+* Find the dates of all release of an indicator;
+* Find the information related to an indicator, such as the notes where the source of data can be found.
 
 ================
 Installation
