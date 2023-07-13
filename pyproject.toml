@@ -1,8 +1,11 @@
 [tool.poetry]
 name = "Fredeco"
 version = "0.1.0"
-description =  "This package allows its users to retrieve data provided by FRED® API and information related to them, such as their source."
-authors = ["Raulin Cadet"]
+description =  "This python package allows its users to retrieve data provided by FRED® API and information related to them, such as their source."
+authors = ["Raulin L. Cadet"]
+maintainers = [
+    "Raulin L. Cadet"
+]
 readme = "README.rst"
 repository = "https://github.com/raulincadet/fredeco"
 documentation = "https://fredeco.readthedocs.io/en/latest/"
