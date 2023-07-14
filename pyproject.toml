@@ -13,8 +13,6 @@ documentation = "https://fredeco.readthedocs.io/en/latest/"
 keywords = ["economics","data","indicators", "fred"]
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Topic :: Economic Indicators :: Retrieve Data",
-    "Intended Audience :: Economists",
     "Intended Audience :: Financial and Insurance Industry",
     "Intended Audience :: Science/Research",
 ]
