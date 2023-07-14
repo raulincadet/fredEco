@@ -2,6 +2,7 @@
 name = "Fredeco"
 version = "0.1.0"
 description =  "This python package allows its users to retrieve data provided by FRED® API and information related to them, such as their source."
+license="MIT"
 authors = ["Raulin L. Cadet"]
 maintainers = [
     "Raulin L. Cadet"
@@ -9,7 +10,14 @@ maintainers = [
 readme = "README.rst"
 repository = "https://github.com/raulincadet/fredeco"
 documentation = "https://fredeco.readthedocs.io/en/latest/"
-keywords = ["economic-data", "fred"]
+keywords = ["economics","data","indicators", "fred"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Topic :: Economic Indicators :: Retrieve Data",
+    "Intended Audience :: Economists",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Intended Audience :: Science/Research",
+]
 packages = [{include = "fredeco"}]
 
 [tool.poetry.dependencies]

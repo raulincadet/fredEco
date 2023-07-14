@@ -35,7 +35,7 @@ Dependencies
 =========
 Usage
 =========
-The usage of the package is explained in this section, whereas some examples are provided in the *Examples* section of the `documentation web page <https://fredeco.readthedocs.io/en/latest/index.html>`_ of the package. It is strongly recommanded to read that section.
+The usage of the package is explained in this section, whereas some examples are provided in the *Examples* section of the `full documentation web page <https://fredeco.readthedocs.io/en/latest/index.html>`_ of the package. It is strongly recommanded to read that section.
 
 * Each user of ``fredeco`` should have his own FRED® API key. To accomodate a new user of ``fredeco``. One of the functions of the package, ``request_api_key()`` allows the user to open the webpage to request a FRED® API key.
 
