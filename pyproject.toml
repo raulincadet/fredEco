@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Fredeco"
-version = "0.1.0"
+version = "0.1.1"
 description =  "This python package allows its users to retrieve data provided by FRED® API and information related to them, such as their source."
 license="MIT"
 authors = ["Raulin L. Cadet"]
