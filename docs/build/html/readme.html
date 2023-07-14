@@ -87,17 +87,17 @@
 <h1>Readme<a class="headerlink" href="#readme" title="Permalink to this heading"></a></h1>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
-<p>This package allows its users to retrieve data provided by FRED® API. This package uses FRED® API but is not endorsed or certified by the Federal Reserve Bank of St. Louis.</p>
+<p>This python package allows its users to retrieve economic data provided by FRED® API. Although <code class="docutils literal notranslate"><span class="pre">fredeco</span></code> uses FRED® API, it is not endorsed or certified by the Federal Reserve Bank of St. Louis.</p>
 </section>
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>Retrieve a time series, when indicating its code;</p></li>
-<li><p>Retrieve several time series, indicating their codes;</p></li>
-<li><p>Search for all time series related to the keywords indicated by the user;</p></li>
-<li><p>Find all time series of a category of series, by indicating the ID of the category;</p></li>
-<li><p>Find the dates of all release of a time series;</p></li>
-<li><p>Find the information related to a time series, such as the notes where the source of data can be found.</p></li>
+<li><p>Retrieve a time series, when indicating the ID of the related indicator;</p></li>
+<li><p>Retrieve several time series, indicating their IDs;</p></li>
+<li><p>Search for all indicators related to the keywords indicated by the user;</p></li>
+<li><p>Find all indicators of a category of series, by indicating the ID of the category;</p></li>
+<li><p>Find the dates of all release of an indicator;</p></li>
+<li><p>Find the information related to an indicator, such as the notes where the source of data can be found.</p></li>
 </ul>
 </section>
 <section id="installation">
@@ -117,7 +117,7 @@
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
-<p>The usage of the package is explained in this section, whereas some examples are provided in the <em>Examples</em> section of the documentation of the package. It is strongly recommanded to read also the section <em>Examples</em> of the documentation.</p>
+<p>The usage of the package is explained in this section, whereas some examples are provided in the <em>Examples</em> section of the <a class="reference external" href="https://fredeco.readthedocs.io/en/latest/index.html">full documentation web page</a> of the package. It is strongly recommanded to read that section.</p>
 <ul class="simple">
 <li><p>Each user of <code class="docutils literal notranslate"><span class="pre">fredeco</span></code> should have his own FRED® API key. To accomodate a new user of <code class="docutils literal notranslate"><span class="pre">fredeco</span></code>. One of the functions of the package, <code class="docutils literal notranslate"><span class="pre">request_api_key()</span></code> allows the user to open the webpage to request a FRED® API key.</p></li>
 <li><p>To retrieve data, the user of <code class="docutils literal notranslate"><span class="pre">fredeco</span></code> should indicate the ID of an indicator, such as GDP for the US Gross Domestic Product, and GDPCA for the US Real Gross Domestic Product. Data related to an economic indicator, with the function <code class="docutils literal notranslate"><span class="pre">fred_series()</span></code>, or several indicators, with the function <code class="docutils literal notranslate"><span class="pre">fred_multi_series()</span></code>, can be retreived. Remember that each user should have her/his own API key as explained previously.</p></li>

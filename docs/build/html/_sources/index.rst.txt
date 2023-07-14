@@ -13,6 +13,7 @@ Fredeco documentation!
    readme
    examples
    modules
+   changelog
 
 
 Indices and tables
